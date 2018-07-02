@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ernet_Superpay>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Ernet_Superpay>
+    </modules>
+</config> 

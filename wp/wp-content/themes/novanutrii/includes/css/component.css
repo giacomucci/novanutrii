@@ -1,0 +1,96 @@
+.bg-menu{
+	background: linear-gradient(to right, #ef8324, #e32129);
+	background-color: #ef8324\9;
+}
+
+.header-content {
+	position: relative;
+	top: 0;
+	height: 55px;
+	z-index: 99999;
+}
+
+/* fixed sub-menu 
+.cbp-hrmenu > ul > li > a {
+	padding: 1.1em 0.7em;
+	display: inline-block;
+}
+
+.cbp-hrmenu .cbp-hrsub {
+	display: none;
+	position: absolute;
+	background: linear-gradient(to right, #ef8324, #e32129);
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+.cbp-hropen .cbp-hrsub {
+	display: block;
+	padding-top: 2em;
+	padding-bottom: 1em;
+}
+*/
+/*
+.cbp-hrsub2 {
+	padding-top: 5em !important;
+	padding-bottom: 2em !important;
+	top: -72% !important;
+}
+*/
+
+/* Examples for media queries
+ 
+@media screen and (max-width: 52.75em) { 
+ 
+    .cbp-hrmenu {
+        font-size: 80%;
+    }
+ 
+}
+ 
+@media screen and (max-width: 43em) { 
+ 
+    .cbp-hrmenu {
+        font-size: 120%;
+        border: none;
+    }
+ 
+    .cbp-hrmenu > ul,
+    .cbp-hrmenu .cbp-hrsub-inner {
+        width: 100%;
+        padding: 0;
+    }
+ 
+    .cbp-hrmenu .cbp-hrsub-inner {
+        padding: 0 2em;
+        font-size: 75%;
+    }
+ 
+    .cbp-hrmenu > ul > li {
+        display: block;
+        border-bottom: 4px solid #47a3da;
+    }
+ 
+    .cbp-hrmenu > ul > li > a { 
+        display: block;
+        padding: 1em 3em;
+    }
+ 
+    .cbp-hrmenu .cbp-hrsub { 
+        position: relative;
+    }
+ 
+    .cbp-hrsub h4 {
+        padding-top: 0.6em;
+    }
+ 
+}
+ 
+@media screen and (max-width: 36em) { 
+    .cbp-hrmenu .cbp-hrsub-inner > div {
+        width: 100%;
+        float: none;
+        padding: 0 2em;
+    }
+} */

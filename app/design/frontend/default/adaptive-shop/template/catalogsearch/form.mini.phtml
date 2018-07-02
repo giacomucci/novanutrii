@@ -1,0 +1,19 @@
+<?php
+/* @var $this Mage_Core_Block_Template */
+/* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
+$catalogSearchHelper =  $this->helper('catalogsearch');
+?>
+
+<div class="search-form">
+    <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+        <input id="search" type="text"  name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" class="search-input" maxlength="128" placeholder="Digite aqui a sua busca" aria-label="Digite aqui a sua busca" autocomplete="off">
+        <input type="submit" value="ok" title="Procurar">
+        <div id="search_autocomplete" class="search-autocomplete"></div>
+        <script type="text/javascript">
+            //<![CDATA[
+            var searchForm = new Varien.searchForm('search_mini_form', 'search', 'Digite aqui a sua busca');
+            searchForm.initAutocomplete('<?php echo $catalogSearchHelper->getSuggestUrl() ?>', 'search_autocomplete');
+            //]]>
+        </script>
+    </form>
+</div>

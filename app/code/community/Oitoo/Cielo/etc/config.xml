@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Oitoo_Cielo>
+      <version>1.1.6</version>
+    </Oitoo_Cielo>
+  </modules>
+    <admin>
+        <routers>
+            <apelidocielo>
+                <use>admin</use>
+                <args>
+                    <module>Oitoo_Cielo</module>
+                    <frontName>backendcielo</frontName>
+                </args>
+            </apelidocielo>
+        </routers>
+    </admin>
+   <adminhtml>
+    <layout>
+        <updates>
+            <apelidocielo>
+                <file>oitoo_cielo.xml</file>
+            </apelidocielo>
+        </updates>
+    </layout>
+   </adminhtml>
+  <frontend>
+    <routers>
+      <apelidocielo>
+        <use>standard</use>
+          <args>
+            <module>Oitoo_Cielo</module>
+            <frontName>frontendcielo</frontName>
+          </args>
+      </apelidocielo>
+    </routers>
+		<layout>
+		  <updates>
+			<apelidocielo>
+			  <file>oitoo_cielo.xml</file>
+			</apelidocielo>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+      <events>
+          <sales_order_payment_cancel> <!-- identifier of the event we want to catch -->
+              <observers>
+                  <sales_order_payment_cancel_handler> <!-- identifier of the event handler -->
+                      <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+                      <class>apelidocielo/payment</class> <!-- observers class alias -->
+                      <method>cancelamento</method>  <!-- observer's method to be called -->
+                      <args></args> <!-- additional arguments passed to observer -->
+                  </sales_order_payment_cancel_handler>
+              </observers>
+          </sales_order_payment_cancel>
+          <sales_order_creditmemo_refund> <!-- identifier of the event we want to catch -->
+              <observers>
+                  <sales_order_creditmemo_refund_handler> <!-- identifier of the event handler -->
+                      <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+                      <class>apelidocielo/payment</class> <!-- observers class alias -->
+                      <method>estorno</method>  <!-- observer's method to be called -->
+                      <args></args> <!-- additional arguments passed to observer -->
+                  </sales_order_creditmemo_refund_handler>
+              </observers>
+          </sales_order_creditmemo_refund>
+
+           <sales_quote_collect_totals_after>
+              <observers>
+                  <oitoocielo_sales_quote_collect_totals_after>
+                      <type>singleton</type>
+                      <class>Oitoo_Cielo_Model_Observer</class>
+                      <method>setDiscount</method>
+                  </oitoocielo_sales_quote_collect_totals_after>
+              </observers>
+          </sales_quote_collect_totals_after>     
+
+           
+      </events>
+    <helpers>
+      <apelidocielo>
+        <class>Oitoo_Cielo_Helper</class>
+      </apelidocielo>
+    </helpers>
+	<blocks>
+	  <apelidocielo>
+		  <class>Oitoo_Cielo_Block</class>
+	  </apelidocielo>
+    <sales>
+        <rewrite>
+          <order_totals>Oitoo_Cielo_Block_Sales_Order_Totals</order_totals>
+        </rewrite>
+      </sales>
+      <adminhtml>
+        <rewrite>
+          <sales_order_totals>Oitoo_Cielo_Block_Adminhtml_Order_Totals</sales_order_totals>
+          <sales_order_invoice_totals>Oitoo_Cielo_Block_Adminhtml_Order_Invoice_Totals</sales_order_invoice_totals>
+          <sales_order_creditmemo_totals>Oitoo_Cielo_Block_Adminhtml_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
+        </rewrite>
+      </adminhtml>
+	</blocks>
+  <sales>
+      <quote>
+        <totals>
+          <juros>
+            <class>apelidocielo/quote_address_juros</class>
+            <after>shipping</after>
+            <before>grand_total</before>
+          </juros>
+        </totals>
+      </quote>
+      <order_invoice>
+        <totals>
+          <juros>
+            <class>apelidocielo/order_invoice_juros</class>
+            <after>shipping</after>
+            <before>grand_total</before>
+          </juros>
+        </totals>
+      </order_invoice> 
+       <order_creditmemo>
+        <totals>
+          <juros>
+            <class>apelidocielo/order_creditmemo_juros</class>
+            <after>shipping</after>
+            <before>grand_total</before>
+          </juros>
+        </totals>
+      </order_creditmemo> 
+    </sales>
+    <fieldsets>
+      <sales_convert_quote_address>
+        <juros>
+          <to_order>*</to_order>
+        </juros>
+        <base_juros>
+          <to_order>*</to_order>
+        </base_juros>
+      </sales_convert_quote_address>
+      <sales_convert_order>
+        <juros>
+          <to_invoice>*</to_invoice>
+          <to_shipment>*</to_shipment>
+          <to_cm>*</to_cm>
+        </juros>
+        <base_juros>
+          <to_invoice>*</to_invoice>
+          <to_shipment>*</to_shipment>
+          <to_cm>*</to_cm>
+        </base_juros>
+      </sales_convert_order>
+    </fieldsets>
+	<models>
+	  <apelidocielo>
+		  <class>Oitoo_Cielo_Model</class>
+	  </apelidocielo>
+	</models>
+    <resources>
+      <apelidocielo_setup>
+        <setup>
+          <module>Oitoo_Cielo</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </apelidocielo_setup>
+      <apelidocielo_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </apelidocielo_write>
+      <apelidocielo_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </apelidocielo_read>
+    </resources>
+  </global>
+    <default>
+        <payment>
+            <apelidocielo>
+                <model>Oitoo_Cielo_Model_Payment</model>
+                <order_status>pending</order_status>
+                <active>1</active>
+                <payment_action>authorize_capture</payment_action>
+                <title>Pagamento por cartão de crédito</title>
+                <bandeiras>visa, mastercard</bandeiras>
+                <ambiente>homologacao</ambiente>
+                <filiacao>1006993069</filiacao>
+                <chave>25fbb99741c739dd84d7b06ec78c9bac718838630f30b112d033ce2e621b34f3</chave>
+            </apelidocielo>
+        </payment>
+    </default>
+</config> 

@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+   <sections>
+        <payment>
+            <groups>
+				<superpay_banco translate="label" module="superpay">
+					<label>SuperPay Banco/Boletos/Redirect - Comprar é facil, pagar pode ser Super!</label>
+                    <sort_order>699</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Habilitado</label>
+							<config_path>payment/superpay_banco/active</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<title translate="label">
+							<label>Title</label>
+							<config_path>payment/superpay_banco/title</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<mode translate="label">
+							<label>Ambiente</label>
+							<config_path>payment/superpay_banco/mode</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>superpay/superpay_source_paymentMode</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</mode>							
+						<code translate="label">
+							<label>Código do Estabelecimento</label>
+							<config_path>payment/superpay_banco/code</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</code>                        
+						<username translate="label">
+							<label>Usuário</label>
+							<config_path>payment/superpay_banco/username</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</username>
+						<password translate="label">
+							<label>Senha</label>
+							<config_path>payment/superpay_banco/password</config_path>
+							<frontend_type>obscure</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</password>
+
+						<order_status translate="label">
+							<label>Status para novos pedidos</label>
+							<config_path>payment/superpay_banco/order_status</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status_new</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>									
+						<expiry translate="label">
+							<label>Vencimento</label>
+							<config_path>payment/superpay_banco/expiry</config_path>
+							<comment>Dias para serem acrescentados no vencimento do boleto.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</expiry>							
+						<sort_order translate="label">
+							<label>Ordenação</label>
+							<config_path>payment/superpay_banco/sort_order</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>																					
+						<banks translate="label">
+							<label>Banco</label>
+							<config_path>payment/superpay_banco/banks</config_path>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>superpay/superpay_source_paymentBank</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<can_be_empty>0</can_be_empty>
+						</banks>
+						<createOrder translate="label">
+							<label>Após pagamento, criar Fatura do Pedido?</label>
+							<config_path>payment/superpay_banco/createOrder</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</createOrder>						
+						<showImagePaymentMethod translate="label">
+							<label>Mostrar a imagem da bandeira no pagamento?</label>
+							<config_path>payment/superpay_banco/showImagePaymentMethod</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</showImagePaymentMethod>
+						<showLabelPaymentMethod translate="label">
+							<label>Mostrar Label com nome da forma de pagamento?</label>
+							<config_path>payment/superpay_banco/showLabelPaymentMethod</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</showLabelPaymentMethod>
+						<urlRedirecionamentoPago translate="label">
+							<label>URL de redirecionamento para pagamento realizado com sucesso:</label>
+							<config_path>payment/superpay_banco/urlRedirecionamentoPago</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</urlRedirecionamentoPago>
+						<urlRedirecionamentoNaoPago translate="label">
+							<label>URL de redirecionamento para transação reprovada:</label>
+							<config_path>payment/superpay_banco/urlRedirecionamentoNaoPago</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</urlRedirecionamentoNaoPago>						
+						<allowspecific translate="label">
+							<label>Pagamento para países específicos</label>
+							<config_path>payment/superpay_banco/allowspecific</config_path>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>17</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Países permitidos</label>
+							<config_path>payment/superpay_banco/specificcountry</config_path>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>18</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<min_order_total>
+							<label>Minimum Order Total</label>
+							<config_path>payment/superpay_banco/min_order_total</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>19</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<max_order_total>
+							<label>Maximum Order Total</label>
+							<config_path>payment/superpay_banco/max_order_total</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_order_total>
+					</fields>
+				</superpay_banco>
+                <superpay translate="label" module="superpay">
+                    <label>SuperPay Cartões - Comprar é facil, pagar pode ser Super!</label>
+                    <sort_order>670</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Habilitado</label>
+							<config_path>payment/superpay/active</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<title translate="label">
+							<label>Título</label>
+							<config_path>payment/superpay/title</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<mode translate="label">
+							<label>Ambiente</label>
+							<config_path>payment/superpay/mode</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>superpay/superpay_source_paymentMode</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</mode>							
+						<code translate="label">
+							<label>Código do Estabelecimento</label>
+							<config_path>payment/superpay/code</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</code>                        
+						<username translate="label">
+							<label>Usuário</label>
+							<config_path>payment/superpay/username</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</username>
+						<password translate="label">
+							<label>Senha</label>
+							<config_path>payment/superpay/password</config_path>
+							<frontend_type>obscure</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</password>
+						<order_status translate="label">
+							<label>Status de Novos Pedidos</label>
+							<config_path>payment/superpay/order_status</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status_processing</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>                        
+						<installments translate="label">
+							<label>Parcelamento Máximo s/ juros</label>
+							<config_path>payment/superpay/installments</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</installments>
+						<max_installment translate="label">
+							<label>Parcela Mínima</label>
+							<config_path>payment/superpay/max_installment</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_installment>						
+						<fraud translate="label">
+							<label>Habilitar anti-fraude?</label>
+							<config_path>payment/superpay/fraud</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<comment>Depende do módulo de Anti-fraude</comment>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</fraud>
+						<sort_order translate="label">
+							<label>Ordenação</label>
+							<config_path>payment/superpay/sort_order</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<cctypes translate="label">
+							<label>Cartões de Crédito</label>
+							<config_path>payment/superpay/cctypes</config_path>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>superpay/superpay_source_paymentCcTypes</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<can_be_empty>1</can_be_empty>
+						</cctypes>
+						<useccv translate="label">
+							<label>Solicitar Código de Segurança</label>
+							<config_path>payment/superpay/useccv</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</useccv>        
+						<showImagePaymentMethod translate="label">
+							<label>Mostrar a imagem da bandeira no pagamento?</label>
+							<config_path>payment/superpay/showImagePaymentMethod</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</showImagePaymentMethod>
+						<showLabelPaymentMethod translate="label">
+							<label>Mostrar Label com nome da forma de pagamento?</label>
+							<config_path>payment/superpay/showLabelPaymentMethod</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</showLabelPaymentMethod>
+						<min_order_total>
+							<label>Total Mínimo do Pedido</label>
+							<config_path>payment/superpay/min_order_total</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<max_order_total>
+							<label>Total Máximo do Pedido</label>
+							<config_path>payment/superpay/max_order_total</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_order_total>   
+						<createOrder translate="label">
+							<label>Após pagamento, criar Fatura do Pedido?</label>
+							<config_path>payment/superpay/createOrder</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>17</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</createOrder>
+						<allowspecific translate="label">
+							<label>Pagamento para países específicos</label>
+							<config_path>payment/superpay/allowspecific</config_path>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>18</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Países permitidos</label>
+							<config_path>payment/superpay/specificcountry</config_path>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>19</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<model>
+						</model>
+					</fields>
+                </superpay>
+				<superpay_oneclick translate="label" module="superpay">
+                    <label>SuperPay OneClick - Comprar é facil, pagar pode ser Super!</label>
+                    <sort_order>670</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Habilitado</label>
+							<config_path>payment/superpay_oneclick/active</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+						<title translate="label">
+							<label>Título</label>
+							<config_path>payment/superpay_oneclick/title</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<mode translate="label">
+							<label>Ambiente</label>
+							<config_path>payment/superpay_oneclick/mode</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>superpay/superpay_source_paymentMode</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</mode>							
+						<code translate="label">
+							<label>Código do Estabelecimento</label>
+							<config_path>payment/superpay_oneclick/code</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</code>                        
+						<username translate="label">
+							<label>Usuário</label>
+							<config_path>payment/superpay_oneclick/username</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</username>
+						<password translate="label">
+							<label>Senha</label>
+							<config_path>payment/superpay_oneclick/password</config_path>
+							<frontend_type>obscure</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</password>
+						<order_status translate="label">
+							<label>Status de Novos Pedidos</label>
+							<config_path>payment/superpay_oneclick/order_status</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status_processing</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>                        
+						<installments translate="label">
+							<label>Parcelamento Máximo s/ juros</label>
+							<config_path>payment/superpay_oneclick/installments</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</installments>
+						<max_installment translate="label">
+							<label>Parcela Mínima</label>
+							<config_path>payment/superpay_oneclick/max_installment</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_installment>												
+						<sort_order translate="label">
+							<label>Ordenação</label>
+							<config_path>payment/superpay_oneclick/sort_order</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sort_order>
+						<cctypes translate="label">
+							<label>Cartões de Crédito</label>
+							<config_path>payment/superpay_oneclick/cctypes</config_path>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>superpay/superpay_source_paymentCcTypes</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<can_be_empty>1</can_be_empty>
+						</cctypes>
+						<useccv translate="label">
+							<label>Solicitar Código de Segurança</label>
+							<config_path>payment/superpay_oneclick/useccv</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</useccv>         
+						<showImagePaymentMethod translate="label">
+							<label>Mostrar a imagem da bandeira no pagamento?</label>
+							<config_path>payment/superpay_oneclick/showImagePaymentMethod</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</showImagePaymentMethod>
+						<showLabelPaymentMethod translate="label">
+							<label>Mostrar Label com nome da forma de pagamento?</label>
+							<config_path>payment/superpay_oneclick/showLabelPaymentMethod</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</showLabelPaymentMethod>
+						<min_order_total>
+							<label>Total Mínimo do Pedido</label>
+							<config_path>payment/superpay_oneclick/min_order_total</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</min_order_total>
+						<max_order_total>
+							<label>Total Máximo do Pedido</label>
+							<config_path>payment/superpay_oneclick/max_order_total</config_path>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</max_order_total>   
+						<createOrder translate="label">
+							<label>Após pagamento, criar Fatura do Pedido?</label>
+							<config_path>payment/superpay_oneclick/createOrder</config_path>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</createOrder>						
+						<allowspecific translate="label">
+							<label>Pagamento para países específicos</label>
+							<config_path>payment/superpay_oneclick/allowspecific</config_path>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>17</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Países permitidos</label>
+							<config_path>payment/superpay_oneclick/specificcountry</config_path>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>18</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificcountry>
+						<model>
+						</model>
+					</fields>
+                </superpay_oneclick>
+            </groups>
+        </payment>
+    </sections>
+</config>

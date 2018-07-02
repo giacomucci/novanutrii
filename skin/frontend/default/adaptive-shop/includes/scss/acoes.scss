@@ -1,0 +1,346 @@
+/**
+ * Ações
+ */
+
+/**
+ * Cor
+ */
+.cor-sec {
+  color: #fff;
+
+  a {
+    color: #fff;
+  }
+
+}
+
+.cor {
+  color: #e75a25;
+
+  a {
+    color: #e75a25;
+
+    span {
+      color: #e75a25;
+    }
+
+  }
+
+}
+
+.std a, .box-cart ul li span .price {
+  color: #e75a25;
+}
+
+.txt {
+  color: #989898;
+
+  a {
+    color: #989898;
+  }
+
+}
+
+p, span, .product-info {
+  color: #989898;
+}
+
+.top-bar-bg {
+  background: #FFF;
+}
+
+.footer-bg {
+  background: #f3f4f6;
+}
+
+.footer-news {
+  background: #fbfbfc;
+}
+
+.banner-bg, #search_autocomplete {
+  background: #f3f4f6;
+}
+
+input[type="text"] {
+  background: #fff;
+}
+
+.foot-bg {
+  background: none repeat scroll 0 0 #e75a25;
+  padding: 20px 0 16px !important;
+}
+
+.bt {
+  background-color: #e75a24;
+  border: none;
+  padding: 8px 10px 7px;
+  color: #fff;
+}
+
+.bt2 {
+  background-color: #e75a24;
+  border: none;
+  padding: 8px 10px 7px;
+  color: #fff;
+  padding: 5px 10px 4px;
+}
+
+.bt3 {
+  background-color: #bbb;
+  border: none;
+  padding: 3px 8px;
+}
+
+.bt:hover, .bt2:hover, .bt3:hover {
+  background-color: #f08325;
+  text-decoration: none;
+}
+
+.no-bt {
+  background: url(../../images/no-bt-nova-buy.jpg) center bottom no-repeat;
+  border: none;
+  text-decoration: none !important;
+
+  &:hover {
+    background: url(../../images/no-bt-nova-buy.jpg) center top no-repeat !important;
+  }
+
+}
+
+/**
+ * Detalhes
+ */
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+}
+
+button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form-search input[type="text"] {
+  border: 1px solid #C3C3C3;
+}
+
+.bd-t {
+  border-top: 1px solid #eaeaea;
+}
+
+.trans {
+  transition: all 0.15s ease-in-out 0s !important;
+  -moz-transition: all 0.15s ease-in-out 0s !important;
+  -webkit-transition: all 0.15s ease-in-out 0s !important;
+  -o-transition: all 0.15s ease-in-out 0s !important;
+
+  a, img {
+    transition: all 0.15s ease-in-out 0s !important;
+    -moz-transition: all 0.15s ease-in-out 0s !important;
+    -webkit-transition: all 0.15s ease-in-out 0s !important;
+    -o-transition: all 0.15s ease-in-out 0s !important;
+  }
+
+}
+
+.opacity-1-5 {
+  opacity: 1;
+
+  a, img {
+    opacity: 1;
+  }
+
+  &:hover, a:hover, img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+
+}
+
+.radius {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/**
+ * Tipografia
+ */
+.fs-10 {
+  font-size: 10px;
+}
+
+.fs-11 {
+  font-size: 11px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-19 {
+  font-size: 19px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-25 {
+  font-size: 25px;
+}
+
+.price {
+  color: #e75a25;
+}
+
+.prod .price {
+  font-size: 22px;
+  font-weight: normal !important;
+}
+
+.td-n {
+  text-decoration: none !important;
+
+  a {
+    text-decoration: none !important;
+  }
+
+}
+
+.td-u {
+  text-decoration: underline;
+
+  a {
+    text-decoration: underline;
+  }
+
+}
+
+.tt-u {
+  text-transform: uppercase;
+}
+
+.normal {
+  font-weight: normal;
+}
+
+.bold, strong {
+  font-family: "proxima-nova-soft-n7", "proxima-nova-soft", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+.regular {
+  font-family: "proxima-nova-soft-n4", "proxima-nova-soft", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.medium {
+  font-family: "proxima-nova-soft-n5", "proxima-nova-soft", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/**
+ * Alinhamento
+ */
+.f-r {
+  float: right;
+}
+
+.f-l {
+  float: left;
+}
+
+.ta-c {
+  text-align: center;
+}
+
+.ta-l {
+  text-align: left;
+}
+
+.ta-r {
+  text-align: right;
+}
+
+.d-b {
+  display: block;
+}
+
+.d-i {
+  display: inline;
+}
+
+.d-ib {
+  display: inline-block;
+}
+
+.clear, .clear4 {
+  clear: both;
+}
+
+.no-bottom {
+  margin-bottom: 0px !important;
+}
+
+.m-auto {
+  margin: 0 auto !important;
+}
+
+.m-top {
+  margin-top: 20px !important;
+}
+
+.no-p {
+  padding: 0 !important;
+}
+
+::selection, ::-webkit-selection, ::-moz-selection {
+  color: #FFFFFF;
+  background-color: #f08325;
+}
+
+.list-qtd {
+  ::selection, ::-webkit-selection, ::-moz-selection {
+    background-color: #efefef;
+    color: #989898;
+  }
+
+}

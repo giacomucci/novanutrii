@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<config>
+	  <sections>
+		<carriers  translate="label" module="regrasdefrete">            
+					<groups>
+				      <regrasdefrete translate="label"> 
+					  <label>Regras de Frete - by Oitoo</label>
+                      <comment>
+                        <![CDATA[
+                        <h3>Sobre o Regras de Frete Oitoo</h3>
+                        O Regras de frete é um módulo de gerenciamento de regras para entregas no magento. <br>
+                        Com ele, é possível definir um valor para cada faixa de ceps, peso ou cidade e estado especifico. <br>
+                        <br>
+                        <h3>Mais informações</h3>
+                        Versão: <b>1.0.0</b> <br>
+
+                        Para maiores informações acesse: <a href="http://www.oitoo.com.br">www.oitoo.com.br</a>
+                        <br>
+                        Manual de utilização: <a href="http://www.oitoo.com.br/">www.oitoo.com.br</a>
+                        <br><br>Entre em contato para soluções de entrega personalizadas!</br><br></comment>
+					    ]]>
+                      </comment>
+					  <frontend_type>text</frontend_type>
+					  <sort_order>0</sort_order>
+					  <show_in_default>1</show_in_default>
+					  <show_in_website>1</show_in_website>
+					  <show_in_store>1</show_in_store>
+					  <model>regrasdefrete/carrier_regrasdefrete</model>
+				       <fields>                        
+				         <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                             <comment>Habilita o módulo</comment>
+                             <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+
+                       <fretePorProduto translate="label">
+                           <label>Frete Por Produto</label>
+                           <frontend_type>select</frontend_type>
+                           <source_model>adminhtml/system_config_source_yesno</source_model>
+                           <sort_order>2</sort_order>
+                           <comment>Calcula o frete para cada produto do carrinho e não para o peso total da encomenda</comment>
+                           <show_in_default>1</show_in_default>
+                           <show_in_website>1</show_in_website>
+                           <show_in_store>1</show_in_store>
+                       </fretePorProduto>
+
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <comment>Texto que aparece para o cliente no checkout, logo acima das regras</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <!--name translate="label">
+                            <label>Method Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </name>
+                        <description translate="label">
+                            <label>Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>76</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description-->
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>100</sort_order>
+                        </sort_order>
+					   </fields>
+					   </regrasdefrete>
+					</groups>
+		</carriers>
+	  </sections>
+</config>

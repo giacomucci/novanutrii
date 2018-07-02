@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Oitoo_Cielo>
+      <active>true</active>
+      <codePool>community</codePool>
+      <version>1.1.6</version>
+    </Oitoo_Cielo>
+  </modules>
+</config>

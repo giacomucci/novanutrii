@@ -1,0 +1,9 @@
+<layout>
+    <default>
+        <reference name="head">
+         <action method="addCss"><stylesheet>css/oitoo_cielo.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>js/prototype.maskedinput.js</name></action>
+              <action method="addItem"><type>skin_js</type><name>js/oitoo.cielo.js</name></action>
+        </reference>
+    </default>
+</layout>

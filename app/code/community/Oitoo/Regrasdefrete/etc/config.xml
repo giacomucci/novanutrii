@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Oitoo_Regrasdefrete>
+      <version>0.2.0</version>
+    </Oitoo_Regrasdefrete>
+  </modules>
+  <global>
+    <helpers>
+      <regrasdefrete>
+        <class>Oitoo_Regrasdefrete_Helper</class>
+      </regrasdefrete>
+    </helpers>
+	<blocks>
+	  <regrasdefrete>
+		<class>Oitoo_Regrasdefrete_Block</class>
+	  </regrasdefrete>
+	</blocks>
+	<models>
+	  <regrasdefrete>
+		<class>Oitoo_Regrasdefrete_Model</class>
+		<resourceModel>regrasdefrete_mysql4</resourceModel>
+	  </regrasdefrete>
+	  <regrasdefrete_mysql4>
+		<class>Oitoo_Regrasdefrete_Model_Mysql4</class>
+		<entities>		  
+			  <regras>
+				<table>regrasdefrete</table>
+			  </regras>
+        </entities>
+	  </regrasdefrete_mysql4>
+	</models>
+	<resources>
+	  <regrasdefrete_setup>
+		<setup>
+		  <module>Oitoo_Regrasdefrete</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </regrasdefrete_setup>
+	  <regrasdefrete_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </regrasdefrete_write>
+	  <regrasdefrete_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </regrasdefrete_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <regrasdefrete>
+	    <use>admin</use>
+		<args>
+		  <module>Oitoo_Regrasdefrete</module>
+		  <frontName>regrasdefrete</frontName>
+		</args>
+	  </regrasdefrete>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	 <sales>	
+	  <children>
+		  <regrasdefrete module="regrasdefrete">
+			<title>Regras de Frete</title>
+			<sort_order>100</sort_order>
+			<children>
+			  <regras module="regrasdefrete">
+			    <title>Gerenciar  Regras</title>
+				<sort_order>10</sort_order>
+				<action>regrasdefrete/adminhtml_regras</action>
+			  </regras>
+			</children>
+		  </regrasdefrete>
+	  </children>
+	</sales>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+		  	<sales>	
+	  			<children>
+					<regrasdefrete translate="title" module="regrasdefrete">
+					  <title>Regras de Frete</title>
+					  <sort_order>1000</sort_order>
+					  <children>
+				  <regras translate="title">
+					<title>Gerenciar Regras</title>
+					<sort_order>10</sort_order>
+				  </regras>
+					  </children>
+					</regrasdefrete>
+		  		</children>
+		  	 </sales>
+		  	</children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<regrasdefrete>
+		  <file>regrasdefrete.xml</file>
+		</regrasdefrete>
+	  </updates>
+	</layout>
+  </adminhtml>    
+	<default>
+        <carriers>
+            <regrasdefrete>
+                <active>1</active>
+                <fretePorProduto>2</fretePorProduto>
+                <model>regrasdefrete/carrier_regrasdefrete</model>
+                <name>Entrega padrão</name>
+                <title>Regras de Frete</title>
+                <description>Faz o calculo de frete de acordo com a tabela</description>
+                <sort_order>0</sort_order>
+            </regrasdefrete>
+        </carriers>
+    </default>
+</config> 

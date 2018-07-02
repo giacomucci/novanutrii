@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Oitoo_Regrasdefrete>
+      <active>true</active>
+      <codePool>community</codePool>            
+	        <depends>
+                <Mage_Shipping />
+            </depends>
+      <version>1.0.0</version>
+    </Oitoo_Regrasdefrete>
+  </modules>
+</config>

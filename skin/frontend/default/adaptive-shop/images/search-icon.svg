@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>89AFFE2C-7089-41D8-AE5C-F000038CBD0C</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/search" transform="translate(-10.000000, -10.000000)">
+            <g id="Group">
+                <rect id="Rectangle" x="0" y="0" width="38" height="38"></rect>
+                <path d="M27.5606602,25.4393398 L23.5606602,21.4393398 C22.9748737,20.8535534 22.0251263,20.8535534 21.4393398,21.4393398 C20.8535534,22.0251263 20.8535534,22.9748737 21.4393398,23.5606602 L25.4393398,27.5606602 C26.0251263,28.1464466 26.9748737,28.1464466 27.5606602,27.5606602 C28.1464466,26.9748737 28.1464466,26.0251263 27.5606602,25.4393398 Z" id="Line" fill="#FEB902" fill-rule="nonzero"></path>
+                <path d="M17.5,25 C13.3578644,25 10,21.6421356 10,17.5 C10,13.3578644 13.3578644,10 17.5,10 C21.6421356,10 25,13.3578644 25,17.5 C25,21.6421356 21.6421356,25 17.5,25 Z M17.5,23 C20.5375661,23 23,20.5375661 23,17.5 C23,14.4624339 20.5375661,12 17.5,12 C14.4624339,12 12,14.4624339 12,17.5 C12,20.5375661 14.4624339,23 17.5,23 Z" id="Oval" fill="#FEB902" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

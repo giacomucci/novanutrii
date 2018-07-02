@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The root node for Magento module configuration -->
+<config>
+    <!--
+        The module's node contains basic
+        information about each Magento module
+    -->
+    <modules>
+        <!--
+            This must exactly match the namespace and module's folder
+            names, with directory separators replaced by underscores
+        -->
+        <Nutrii_Campos>
+            <!-- The version of our module, starting at 1.0.1 -->
+            <version>1.0.2</version>
+        </Nutrii_Campos>
+    </modules>
+	<global>
+    		<helpers>
+     			 <Campos>
+        			<class>Nutrii_Campos_Helper</class>
+     			 </Campos>
+    		</helpers>
+    		<models>
+      			<Campos>
+        			<class>Nutrii_Campos_Model</class>
+        			<resourceModel>Campos_mysql4</resourceModel>
+      			</Campos>
+    		</models>
+            <resources>
+		<Nutrii_Campos_setup>
+              		<setup>
+	                	<module>Nutrii_Campos</module>
+        	             	<class>Mage_Customer_Model_Entity_Setup</class>
+               		</setup>
+			<connection>
+          			<use>core_setup</use>
+        		</connection>
+            	</Nutrii_Campos_setup>
+                <Nutrii_Campos_write>
+                    <connection>
+                        <use>core_write</use>
+                    </connection>
+                </Nutrii_Campos_write>
+                <Nutrii_Campos_read>
+                    <connection>
+                        <use>core_read</use>
+                    </connection>
+                </Nutrii_Campos_read>
+            </resources>
+        </global>
+</config>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <regrasdefrete_adminhtml_regras_index>
+	<reference name="content">
+	  <block type="regrasdefrete/adminhtml_regras" name="regras" />
+	</reference>
+  </regrasdefrete_adminhtml_regras_index>
+</layout>

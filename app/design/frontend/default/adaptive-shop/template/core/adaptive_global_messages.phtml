@@ -1,0 +1,41 @@
+<div id="adaptive_global_messages" class="hide"></div>
+
+<?php $this->getMessagesBlock()->getMessageCollection()->clear(); ?>
+
+<!-- SCRIPT - Barra Topo
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script type="text/javascript">
+	;(function($, window, document, undefined) {
+	    var $win = $(window);
+	    var $doc = $(document);
+	
+	    $win.load(function() {
+		    
+		    if(localStorage.message){
+			    $("#adaptive_global_messages").html("<ul class='messages'><li class='success-msg'><ul><li><span>" + localStorage.message + "</span></li></ul>");
+				$("#adaptive_global_messages").slideDown(600);
+		        $('#barra-topo').addClass('active');
+		        
+				$('.success-msg ul').append('<li><a href="#" id="adaptive_global_messages_close">×</a></li>');
+				$('.error-msg ul').append('<li><a href="#" id="adaptive_global_messages_close">×</a></li>');
+				
+				$('#adaptive_global_messages_close').click(function(event){
+			    	event.preventDefault();
+			    	$("#adaptive_global_messages").slideUp(600);
+			    	$('#barra-topo').animate({ 'marginTop': '0px' }, 600);
+			    	$('.nova-menu').animate({ 'top': '52px' }, 600);
+			    	$('#barra-topo').removeClass('active');	    
+			    }); 
+			    localStorage.setItem("message", "");
+		    }
+		    	    	
+	    });
+	})(jQuery, window, document);
+</script>
+
+
+<?php if(strpos(Mage::getSingleton('core/session')->getLastUrl(), 'checkout/cart')): ?>
+	<!-- Não exibe se for o Carrinho
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<style>ul.messages {display: none;}</style>
+<?php endif ?>

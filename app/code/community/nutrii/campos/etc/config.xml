@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The root node for Magento module configuration -->
+<config>
+    <!--
+        The module's node contains basic
+        information about each Magento module
+    -->
+    <modules>
+        <!--
+            This must exactly match the namespace and module's folder
+            names, with directory separators replaced by underscores
+        -->
+        <nutrii_campos>
+            <!-- The version of our module, starting at 1.0.0 -->
+            <version>1.0.0</version>
+        </nutrii_campos>
+    </modules>
+
+            <resources>
+                <nutrii_campos_write>
+                    <connection>
+                        <use>core_write</use>
+                    </connection>
+                </nutrii_campos_write>
+                <nutrii_campos_read>
+                    <connection>
+                        <use>core_read</use>
+                    </connection>
+                </nutrii_campos_read>
+            </resources>
+        </global>
+</config>

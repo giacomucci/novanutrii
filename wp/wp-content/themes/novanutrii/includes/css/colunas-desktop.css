@@ -1,0 +1,93 @@
+/*
+desktop
+*/
+@media only screen and (min-width : 1200px) {
+
+#wrapper{
+	padding: 0 24px;
+	width: 1176px;
+}
+
+#colunas12{
+	width: 1162px;
+}
+
+#wrapper-colunas9{
+	width: 882px;
+}
+
+#colunas9{
+	width: 868px
+}
+
+#wrapper-colunas8{
+	width: 784px;
+}
+
+#colunas8{
+	width: 770px
+}
+
+#colunas6{
+	width: 574px;
+}
+
+#colunas4{
+	width: 378px;
+}
+
+#colunas3{
+	width: 280px;
+}
+
+.search{
+	width: 90%;
+	margin-left: 1%;
+}
+
+.category-link li a{
+	font-size: 14px;
+	width: 259px;
+}
+
+.post .post-image{
+	width: 100%;
+	height: 378px;
+	margin-top: 0;
+}
+
+.post .post-image img{
+	width: 100%;
+	height: 378px;
+	margin-top: 0;
+}
+
+.newsletter input{
+	width: 48%;
+}
+
+.inner-post-title{
+	top: 30%;
+	top: 50%\9;
+}
+
+.inner-post-info{
+	top: 35%;
+	top: 60%\9;
+}
+
+.inner-post-image{
+	height: 470px;
+}
+
+.veja-image{
+	width: 100%;
+	height: 280px;
+}
+
+.veja-image img{
+	width: 280px;
+	height: 280px;
+}
+
+}

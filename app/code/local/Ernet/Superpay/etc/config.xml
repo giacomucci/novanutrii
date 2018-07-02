@@ -1,0 +1,146 @@
+﻿<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ernet_Superpay>
+            <version>1.2.14</version>
+        </Ernet_Superpay>
+    </modules>
+    <frontend>
+        <routers>
+            <superpay>
+                <use>standard</use>
+                <args>
+                    <module>Ernet_Superpay</module>
+                    <frontName>superpay</frontName>
+                </args>
+            </superpay>
+        </routers>
+        <layout>
+            <updates>
+                <superpay>
+                    <file>superpay.xml</file>
+                </superpay>
+            </updates>
+        </layout>
+    </frontend> 
+    <global>
+        <models>
+            <superpay>
+                <class>Ernet_Superpay_Model</class>
+                <resourceModel>superpay_mysql4</resourceModel>
+            </superpay>
+            <superpay_mysql4>
+                <class>Ernet_Superpay_Model_Mysql4</class>
+                <entities>
+                    <superpay>
+                        <table>superpay</table>
+                    </superpay>
+                </entities>
+            </superpay_mysql4>
+        </models>
+        <resources>
+            <superpay_setup>
+                <setup>
+                    <module>Ernet_Superpay</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </superpay_setup>
+            <superpay_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </superpay_write>
+            <superpay_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </superpay_read>
+        </resources>
+        <blocks>
+            <superpay>
+                <class>Ernet_Superpay_Block</class>
+            </superpay>
+        </blocks>
+        <helpers>
+            <superpay>
+					<class>Ernet_Superpay_Helper</class>
+            </superpay>
+			<superpay_banco>
+                    <data>Ernet_Superpay_Helper_Data</data>
+            </superpay_banco>
+        </helpers>
+		
+		<sales>
+            <order>
+                <statuses>
+                    <!-- retained for backwards compatibility, not used anymore -->
+                    <boleto_maior translate="label">
+                        <label>Boleto Maior</label>
+                    </boleto_maior>
+                    <boleto_menor translate="label">
+                        <label>Boleto Menor</label>
+                    </boleto_menor>
+                    <falha_operadora translate="label">
+                        <label>Falha na Operadora</label>
+                    </falha_operadora>
+                </statuses>
+				<!-- Customize The State Transitions -->
+                <states>
+                    <boleto_maior translate="label">
+                        <label>Boleto Maior</label>
+                        <statuses>
+                            <boleto_maior default="1"/>
+                        </statuses>
+                        <visible_on_front/>
+                    </boleto_maior>
+                    <boleto_menor translate="label">
+                        <label>Boleto Menor</label>
+                        <statuses>
+                            <boleto_maior default="1"/>
+                        </statuses>
+                        <visible_on_front/>
+                    </boleto_menor>	
+                    <falha_operadora translate="label">
+                        <label>Falha na Operadora</label>
+                        <statuses>
+                            <boleto_maior default="1"/>
+                        </statuses>
+                        <visible_on_front/>
+                    </falha_operadora>					
+                </states>                  
+            </order>            
+        </sales>
+    </global>
+    <default>
+        <payment>
+            <superpay>
+                <active>1</active>
+                <model>superpay/superpay</model>
+                <order_status>processing</order_status>
+                <title>SuperPay</title>
+				<payment_action>authorize</payment_action>
+            </superpay>
+			<superpay_banco>
+                <active>1</active>
+                <model>superpay/superpaybanco</model>
+                <order_status>new</order_status>
+                <payment_action>authorize</payment_action>
+                <allowspecific>0</allowspecific>
+                <vendor>SuperPay</vendor>
+                <title>Boleto Bancário</title>              
+				<mode>test</mode>
+            </superpay_banco>
+			<superpay_oneclick>
+                <active>1</active>
+                <model>superpay/superpayoneclick</model>
+                <order_status>processing</order_status>                              
+                <vendor>SuperPay</vendor>
+                <title>SuperPay OneClick</title>              
+				<mode>test</mode>
+				<payment_action>authorize</payment_action>
+            </superpay_oneclick>
+         </payment>
+    </default>
+</config>

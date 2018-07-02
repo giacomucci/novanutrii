@@ -1,0 +1,94 @@
+<?php
+$order = mage::getModel('sales/order')->load($this->getOrderId(),'increment_id');
+$valorfrete = $order->getShippingAmount();
+$valordesconto = $order->getDiscountAmount();
+$valortotal = $order->getGrandTotal();
+
+//envia o email do pedido
+$this->sendEmailOrder();
+?>
+
+
+<div class="esquerda">
+
+    <div class="obrigado-sucesso"><?php echo $this->__("Pedido Realizado com Sucesso!"); ?></div>
+    <div class="texto"><?php echo $this->getMensagem(); ?></div>
+
+    <div class="titulo"><?php echo $this->__("Número do pedido:"); ?> <span style="color:#548C1C"><?php echo  $this->escapeHtml($this->getOrderId()) ?></span></div>
+
+    <div class="texto"><?php echo $this->__("A confirmação do pedido foi enviada para o e-mail"); ?> <b> <?php echo $order->getCustomerEmail() ?></b></div>
+
+
+    <div class="titulo"><?php echo $this->__("Importante"); ?></div>
+    <div class="texto">
+            <?php
+
+            $paymentInfo = Mage::helper('payment')->getInfoBlock($order->getPayment())
+                ->setIsSecureMode(true)
+                ->toHtml();
+
+            echo $paymentInfo;
+            ?>
+
+
+    </div>
+
+
+    <div class="titulo"><?php echo $this->__("Dados de entrega:"); ?> </div>
+    <div class="texto"><?php echo $order->getShippingDescription() ?></div>
+
+    <div class="titulo"><?php echo $this->__("Endereço de entrega"); ?></div>
+    <div class='texto'>
+        <?php
+        $_shippingAddress = $order->getShippingAddress();
+        echo '<b>' . $_shippingAddress->getFirstname() . ' ' .  $_shippingAddress->getLastname() . '</b><br><br>';
+        echo $_shippingAddress->getStreetFull().'<br>';
+        echo $_shippingAddress->getRegion().'<br>';
+        echo $_shippingAddress->getCity().'<br>';
+        echo $_shippingAddress->getPostcode().'<br>';
+        ?>
+    </div>
+
+</div>
+
+<div class=" direita">
+
+    <div class="titulo"><?php echo $this->__("Itens do pedido"); ?></div>
+    <?php
+
+    $items = $order->getAllItems();
+    $itemcount=count($items);
+    $name=array();
+    $unitPrice=array();
+    $sku=array();
+    $ids=array();
+    $qty=array();
+    foreach ($items as $itemId => $item)
+    {
+        if($item->getQtyToInvoice() == 0){ $QTY = 1; } else { $QTY = $item->getQtyToInvoice(); }
+        echo "<div class='texto' style='height: 80px;'><div class='left-texto'>";
+        echo $item->getName().'<br>';
+        echo $QTY.' unidades';
+        echo "</div>";
+        echo "<div class='right-texto'>";
+        
+        echo Mage::helper('core')->currency($item->getPrice()*$QTY);
+        echo "</div></div>";
+        //$sku[]=$item->getSku();
+        //$ids[]=$item->getProductId();
+
+    }
+    echo "<div class='texto' style='background: #F5F3F3;'>";
+    echo "<div class='left-texto'>Frete</div><div class='right-texto'>". Mage::helper('core')->currency($valorfrete)."</div>";
+    echo "</div>";
+    echo "<div class='texto'>";
+    echo "<div class='left-texto'>Desconto</div><div class='right-texto'>". Mage::helper('core')->currency($valordesconto)."</div>";
+    echo "</div>";
+    echo "<div class='texto' style='background: #F5F3F3;'>";
+    echo "<div class='left-texto'>Total</div><div class='right-texto'>".Mage::helper('core')->currency($valortotal)."</div>";
+    echo "</div>";
+    ?>
+
+
+</div>
+

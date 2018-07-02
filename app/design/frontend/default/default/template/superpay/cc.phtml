@@ -1,0 +1,187 @@
+<?php 
+
+$_code=$this->getMethodCode();
+
+$parcelamento = (int)Mage::getStoreConfig('payment/superpay/installments');
+Mage::log('## parcelamento = '.$parcelamento,null,'ernet.log');
+
+$parcela_minima = (int)Mage::getStoreConfig('payment/superpay/max_installment');
+Mage::log('## parcela_minima = '.$parcela_minima,null,'ernet.log');
+
+$order_total = Mage::getSingleton('checkout/session')->getQuote()->getGrandTotal();
+Mage::log('## Order Grand Total = '.$order_total,null,'ernet.log');
+?>
+<style>
+	.form-list label{font-size: 12px;}
+</style>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <div class="divPagamentoSuperPayCC">		
+            <?php $_ccType = $this->getInfoData('cc_type');
+			
+			$_ccTypes = split(",",Mage::getStoreConfig('payment/superpay/cctypes'));
+			Mage::log('## Form CC Types = '.print_r($_ccTypes,true),null,'ernet.log');
+			$primeiraExecucao = true;
+			
+			?>            
+			<?php foreach ($_ccTypes as $_typeCode){ 
+					$_typeName = Mage::getModel('superpay/superpay')->getCCType($_typeCode);
+					Mage::log('## Retrieved CC Type = '.$_typeName,null,'ernet.log');
+			?>				
+				<?php if ($primeiraExecucao == false) { ?>
+					<input type="radio" id="<?php echo $_code ?>_cc_type" class="validate-one-required inputRadioPagamentoSuperPayCC" name="payment[cc_type]" value="<?php echo $_typeCode ?>">
+				<?php } else {
+					$primeiraExecucao = false; ?>
+					<input type="radio" id="<?php echo $_code ?>_cc_type" checked class="validate-one-required inputRadioPagamentoSuperPayCC" name="payment[cc_type]" value="<?php echo $_typeCode ?>">
+				<?php } ?>										
+				
+				<label for="payment[cc_type]" class="labelPagamentoSuperPayCC">
+						<?php 							
+							if (Mage::getStoreConfig('payment/superpay/showImagePaymentMethod') == true) {														
+						?>
+							<div class="divBandeiraPagamentoSuperPayCC">
+								<?php		
+									if ($_typeCode == 120 or $_typeCode == 129 or $_typeCode == 130 or $_typeCode == 139 or $_typeCode == 40 or $_typeCode == 80 or $_typeCode == 90 or $_typeCode == 3
+                                        or $_typeCode == 204 or $_typeCode == 270 or $_typeCode == 350){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-visa.gif ">';
+									}else if ($_typeCode == 121 or $_typeCode == 131 or $_typeCode == 81 or $_typeCode == 91 or $_typeCode == 6 or $_typeCode == 205 or $_typeCode == 271 or $_typeCode == 351){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-master.gif ">';
+									}else if ($_typeCode == 122 or $_typeCode == 132 or $_typeCode == 10 or $_typeCode == 11 or $_typeCode == 12){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-amex.gif ">';
+									}else if ($_typeCode == 123 or $_typeCode == 133 or $_typeCode == 63 or $_typeCode == 73){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-elo.gif ">';	
+									}else if ($_typeCode == 124 or $_typeCode == 134 or $_typeCode == 82 or $_typeCode == 92 or $_typeCode == 9 or $_typeCode == 206){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-diners.gif ">';
+									}else if ($_typeCode == 125 or $_typeCode == 135 or $_typeCode == 207){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-discover.gif ">';
+									}else if ($_typeCode == 126 or $_typeCode == 136){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/aura.png ">';
+									}else if ($_typeCode == 127 or $_typeCode == 137 or $_typeCode == 15){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-jcb.gif ">';
+									}else if ($_typeCode == 93 or $_typeCode == 13){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/methods-hypercard.png ">';
+									}else if ($_typeCode == 14){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/sorocred.png ">';
+									}else if ($_typeCode == 16 or $_typeCode == 17 or $_typeCode == 29 or $_typeCode == 31){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/itau.png">';
+									}else if ($_typeCode == 18 or $_typeCode == 19 or $_typeCode == 30 or $_typeCode == 140){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/bradesco.png">';
+									}else if ($_typeCode == 20 or $_typeCode == 33){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/transferencia_real.png">';
+									}else if ($_typeCode == 21 or $_typeCode == 28){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/transferencia_bb.jpg">';
+									}else if ($_typeCode == 22 or $_typeCode == 100 or $_typeCode == 32){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/hsbc.jpg">';
+									}else if ($_typeCode == 23 or $_typeCode == 24 or $_typeCode == 25 or $_typeCode == 26){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/banrisul.png">';
+									}else if ($_typeCode == 27){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/oipaggo.png">';
+									}else if ($_typeCode == 34){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/caixa.jpg">';
+									}else if ($_typeCode == 35){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/moip.png">';
+									}else if ($_typeCode == 36){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/mercadopago.png">';
+									}else if ($_typeCode == 37){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/pagamentodigital.png">';
+									}else if ($_typeCode == 38){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/pagseguro.png">';
+									}else if ($_typeCode == 110 or $_typeCode == 111){
+										echo '<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/paypal.png">';
+									} else {				
+										echo '<img id="'.$_typeName.'" src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'superpay_superpay/img_cartao_default.png ">';
+									}
+									?>
+							</div>
+						<?php	
+						}
+						?>		
+						<div class="divTextoBandeiraPagamentoSuperPayCC">
+						<?php
+							if (Mage::getStoreConfig('payment/superpay/showLabelPaymentMethod') == true) {
+								echo '<p>';
+								echo $_typeName;
+								echo '</p>';
+							}
+						?>	
+					</div>
+				</label>											
+			<?php } ?>  
+		</div>
+	</li>
+	<li>
+		<label for="parcelamento" class="required"><em>*</em><?php echo $this->__('Parcelamento') ?></label>
+		<div class="input-box">
+		<?php
+		for ($p = $parcelamento; $p > 1; $p--){
+			if (($order_total/$p) >= $parcela_minima) {
+				echo '<input type="radio" id="parcelamento" class="validate-one-required" name="payment[parcelamento]" value="'.$p.'" selected="selected"> <span class="fs-12 bold">'.$p.'x s/ juros - R$ '.number_format(($order_total/$p),2,',','.').'</span></input><br>';
+			}
+		}
+		?>
+		<input type="radio" id="parcelamento" class="validate-one-required" name="payment[parcelamento]" value="1" CHECKED> <span class="fs-12 bold">À vista - R$ <?php echo number_format($order_total,2,',','.'); ?></span></input><br>
+		</div>		
+	</li>
+    <li>
+        <div class="input-box">
+            <label for="<?php echo $_code ?>_cc_owner" class="required"><em>*</em><?php echo $this->__('Name on Card') ?></label>
+            <input type="text" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry op-i" id="<?php echo $_code ?>_cc_owner" name="payment[cc_owner]" maxlength="30" value=""/>
+        </div>
+    </li>    
+	<li>
+        <label for="<?php echo $_code ?>_cc_number" class="required"><em>*</em><?php echo $this->__('Credit Card Number') ?></label>
+        <div class="input-box">
+		<!--validate-cc-number  validate-cc-type-->
+            <input type="text" id="<?php echo $_code ?>_cc_number" name="payment[cc_number]" title="<?php echo $this->__('Credit Card Number') ?>" class="input-text required-entry op-i"  maxlength="19" value="" onkeydown="return isNumber_on_superpay_cc(event);"/>
+        </div>
+    </li>
+	
+    <li id="<?php echo $_code ?>_cc_type_exp_div" class="short">
+        <label for="<?php echo $_code ?>_expiration" class="required"><em>*</em><?php echo $this->__('Expiration Date') ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <select id="<?php echo $_code ?>_expiration" name="payment[cc_exp_month]" class="month validate-cc-exp required-entry op-i"style="width: 65px !important;
+    margin-top: 7px;height: 28px;margin-left: 4px">
+                <?php $_ccExpMonth = $this->getInfoData('cc_exp_month') ?>
+                <?php foreach ($this->getCcMonths() as $k=>$v): ?>
+                    <option value="<?php echo $k?$k:'' ?>"><?php echo $v ?></option>
+                <?php endforeach ?>
+                </select>
+            </div>
+            <div class="v-fix">
+                <?php $_ccExpYear = $this->getInfoData('cc_exp_year') ?>
+                <select id="<?php echo $_code ?>_expiration_yr" name="payment[cc_exp_year]" class="year required-entry op-i" style="width: 65px !important;
+    margin-top: 7px;height: 28px">
+                <?php foreach ($this->getCcYears() as $k=>$v): ?>
+                    <option value="<?php echo $k?$k:'' ?>"><?php echo $v ?></option>
+                <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    </li>
+
+    <?php echo $this->getChildHtml() ?>
+    <?php if($this->hasVerification()): ?>
+    <li id="<?php echo $_code ?>_cc_type_cvv_div" class="short">
+        <label for="<?php echo $_code ?>_cc_cid" class="required" style="padding-bottom: 7px;"><em>*</em><?php echo $this->__('Card Verification Number') ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text cvv required-entry op-i" id="<?php echo $_code ?>_cc_cid" name="payment[cc_cid]" maxlength="4" value="" onkeydown="return isNumber_on_superpay_cc(event);"/>
+            </div>
+            <a href="#" class="cvv-what-is-this" style="display: none;"> <?php echo $this->__('What is this?') ?></a>
+        </div>
+    </li>
+    <?php endif; ?>
+
+	
+	
+</ul>
+<?php Mage::log('## End CC Form output.',null,'ernet.log'); ?>
+
+<style media="screen" type="text/css">	
+	.divPagamentoSuperPayCC { float:left; clear:none; }
+	.labelPagamentoSuperPayCC { float:left; clear:none; display:block; padding: 2px 1em 10px 0; }
+	.inputRadioPagamentoSuperPayCC { float:left; clear:none; margin: 30px 15px 0 2px; }
+	.divBandeiraPagamentoSuperPayCC { width: 80px ; height: 80px; overflow: hidden; }
+	.divTextoBandeiraPagamentoSuperPayCC { width: 80px ; word-wrap:break-word ; }
+</style>

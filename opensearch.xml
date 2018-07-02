@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+    <ShortName>nutrii.com.br</ShortName>
+    <Description>Nova Nutrii - Nutrição Enteral - Dieta Enteral e Suplemento Nestle</Description>
+    <Url type="text/html" method="get" template="https:/www.nutrii.com.br/catalogsearch/result/?q={searchTerms}"/>
+    <Image width="16" height="16">https://www.nutrii.com.br/media/favicon/default/favicon.ico</Image>
+    <InputEncoding>UTF-8</InputEncoding>
+    <SearchForm>https:/www.nutrii.com.br/</SearchForm>
+</OpenSearchDescription>
