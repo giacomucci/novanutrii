@@ -43,6 +43,7 @@
 	<meta property="og:url" content="https://www.nutrii.com.br/" />
 	<meta property="og:description" content="<?php echo strip_tags($this->getDescription()) ?>" />
 	<meta property="og:site_name" content="Nova Nutrii" />
+	<link rel="canonical" href="https://www.nutrii.com.br/" />
 <?php else: ?>
 	<meta property="og:title" content="<?php echo $this->getTitle() ?>" />
 	<meta property="og:type" content="article" />
@@ -52,7 +53,6 @@
 <?php endif; ?>
 
 <link type="application/opensearchdescription+xml" rel="search" href="https://www.nutrii.com.br/opensearch.xml">
-<link rel="canonical" href="https://www.nutrii.com.br/" />
 
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />

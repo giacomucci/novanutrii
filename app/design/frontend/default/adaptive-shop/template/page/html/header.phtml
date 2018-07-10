@@ -227,16 +227,28 @@
     <div id="full" class="banner-bg">
 
         <div id="b-slider" class="owl-carousel owl-theme bnr_novo_modelo">
-
-			<div class="banner-simple-image">
+            <div class="banner-simple-image">
 				<div class="mobile-banner">
-					<a href="https://www.nutrii.com.br/thicken-up-clear-125-g">
-						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/banners/01-NovaNutrii-BannerSite-ResourceThickenUp-Mobile.jpg" alt="Resource Thicken Up"/>
+					<a href="https://www.nutrii.com.br/isosource-soya-1000-ml">
+						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/banners/novanutrii-Isosource-mobile.jpg" alt="Isosource"/>
 					</a>
 				</div>
 				<div class="desktop-banner">
-					<a href="https://www.nutrii.com.br/thicken-up-clear-125-g">
-						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/banners/01-NovaNutrii-BannerSite-ResourceThickenUp-Desktop.jpg" alt="Resource Thicken Up"/>
+					<a href="https://www.nutrii.com.br/isosource-soya-1000-ml">
+						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/banners/novanutrii-Isosource-Desktop-.jpg" alt="Isosource"/>
+					</a>
+				</div>
+			</div>
+			
+			<div class="banner-simple-image">
+				<div class="mobile-banner">
+					<a href="https://www.nutrii.com.br/isosource-1-5-1000-ml">
+						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/banners/novanutrii-Isosource1.5-mobile.jpg" alt="Isosource 1.5"/>
+					</a>
+				</div>
+				<div class="desktop-banner">
+					<a href="https://www.nutrii.com.br/isosource-1-5-1000-ml">
+						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/banners/novanutrii-Isosource1.5-Desktop.jpg" alt="Isosource 1.5"/>
 					</a>
 				</div>
 			</div>
@@ -247,7 +259,7 @@
     <div id="full" class="mob">
         <div id="wrapper" class="banner-faixa">
             <div id="colunas12" class="no-bottom">
-                <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/barra-vantagens.svg" alt="Confira as vantagens de comprar com a Nova Nutrii!"/>
+                <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/barra-vantagens.svg" alt="Confira as vantagens de comprar com a Nova Nutrii!"/>
             </div>
         </div>
     </div>
@@ -260,13 +272,13 @@
             <br/>
             <div id="wrapper">
                 <div id="colunas4" class="no-bottom">
-                    <a href="/acessorios"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/acessorios-minibanner.jpg" alt="Acessórios" style="width:100%;height: auto;"/></a>
+                    <a href="/acessorios"><img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/acessorios-minibanner.jpg" alt="Acessórios" style="width:100%;height: auto;"/></a>
                 </div>
                 <div id="colunas4" class="no-bottom">
-                    <a href="/suplementos/cicatrizacao"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/cicatrizacao-minibanner.jpg" alt="Cicatrização" style="width:100%;height: auto;"/></a>
+                    <a href="/suplementos/cicatrizacao"><img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/cicatrizacao-minibanner.jpg" alt="Cicatrização" style="width:100%;height: auto;"/></a>
                 </div>
                 <div id="colunas4" class="no-bottom">
-                    <a href="/modulos-nutricionais/espessante"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/espessantes-minibanner.jpg" alt="Espessantes" style="width:100%;height: auto;"/></a>
+                    <a href="/modulos-nutricionais/espessante"><img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/espessantes-minibanner.jpg" alt="Espessantes" style="width:100%;height: auto;"/></a>
                 </div>
             </div>
         </div>
@@ -285,8 +297,11 @@
         jQuery.noConflict();
         jQuery(document).ready(function() {
             jQuery("#b-slider").owlCarousel({
-                autoPlay : 5000,
+                autoplay: true,
+		        autoPlaySpeed: 5000,
+		        autoPlayTimeout: 5000,
                 stopOnHover : true,
+                loop: true,
                 nav: false,
                 dots: true,
                 items:1,
@@ -303,7 +318,7 @@
             <div id="colunas12" class="no-bottom contentHeaderCheckout">
                 <div class="logoCheckout common">
                     <a href="<?php echo $this->getUrl('','_nosid') ?>" title="<?php echo $this->getLogoAlt() ?>">
-                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/logo_nutrii_checkout.svg" alt="Nova Nutrii">
+                        <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/logo_nutrii_checkout.svg" alt="Nova Nutrii">
                     </a>
                 </div>
 
@@ -319,11 +334,11 @@
                 </div>
 
                 <div class="ambienteSeguroCheckout common">
-                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/ambiente_seguro_checkout.svg" alt="Ambiente Seguro">
+                    <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/ambiente_seguro_checkout.svg" alt="Ambiente Seguro">
                 </div>
 
                 <div class="entregaCheckout common">
-                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/entrega_rapida_checkout.svg" alt="Entrega Rápida">
+                    <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/default/adaptive-shop/images/entrega_rapida_checkout.svg" alt="Entrega Rápida">
                 </div>
             </div>
         </div>
