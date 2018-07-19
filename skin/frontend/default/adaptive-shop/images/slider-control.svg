@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="34px" viewBox="0 0 44 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>slider-control</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="element/mobile/nav-slider" transform="translate(-10.000000, -10.000000)">
+            <g id="slider-control">
+                <g id="ui/chevron/gray/default" transform="translate(32.000000, 0.000000)">
+                    <rect id="Rectangle" x="0" y="0" width="32" height="54"></rect>
+                    <path d="M10.1520017,42.4700011 C9.85929136,42.9383376 10.0016645,43.555288 10.4700011,43.8479983 C10.9383376,44.1407086 11.555288,43.9983355 11.8479983,43.5299989 L21.8479983,27.5299989 C22.0506672,27.2057287 22.0506672,26.7942713 21.8479983,26.4700011 L11.8479983,10.4700011 C11.555288,10.0016645 10.9383376,9.85929136 10.4700011,10.1520017 C10.0016645,10.444712 9.85929136,11.0616624 10.1520017,11.5299989 L19.8207524,27 L10.1520017,42.4700011 Z" id="Chevron-3" fill="#D2D2D2" fill-rule="nonzero"></path>
+                </g>
+                <g id="ui/chevron/gray/default" transform="translate(16.000000, 27.000000) scale(-1, 1) translate(-16.000000, -27.000000) ">
+                    <rect id="Rectangle" x="0" y="0" width="32" height="54"></rect>
+                    <path d="M10.1520017,42.4700011 C9.85929136,42.9383376 10.0016645,43.555288 10.4700011,43.8479983 C10.9383376,44.1407086 11.555288,43.9983355 11.8479983,43.5299989 L21.8479983,27.5299989 C22.0506672,27.2057287 22.0506672,26.7942713 21.8479983,26.4700011 L11.8479983,10.4700011 C11.555288,10.0016645 10.9383376,9.85929136 10.4700011,10.1520017 C10.0016645,10.444712 9.85929136,11.0616624 10.1520017,11.5299989 L19.8207524,27 L10.1520017,42.4700011 Z" id="Chevron-3" fill="#D2D2D2" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

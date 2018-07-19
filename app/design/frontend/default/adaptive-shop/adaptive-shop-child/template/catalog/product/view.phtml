@@ -1,0 +1,373 @@
+<?php
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+
+<?php //echo $this->getChildHtml('product_type_data') ?>
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<?php $_storeId = Mage::app()->getStore()->getId(); ?>
+<?php $_isActive = Mage::getStoreConfig('outofstocksubscription/mail/active', $_storeId); ?>
+
+<?php if(!$_product->isSaleable() && $_isActive): ?>
+    <?php $_url = $this->getUrl('outofstocksubscription') ?>
+<?php else: ?>
+    <?php $_url = $this->getSubmitUrl($_product); ?>
+<?php endif; ?>
+
+<div class="no-home full product-wrapper">
+    <div class="full ice-bg">
+        <div class="cols12">
+            <div class="breadcrumbs fs-12 txt mob">
+                <ul>
+                    
+                    <li>
+                        <a href="">Linha de Produto</a>&nbsp;»&nbsp;
+                    </li>
+                    <li>
+                        <a href="">Nutren</a>&nbsp;»&nbsp;
+                    </li>
+                    <li class="product">
+                        <span>Nutrição Junior - 400g</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="product-data full">
+            <div class="cols12">
+                <div class="cols-wrapper clearfix">
+                    <div class="product-description cols">
+                        <h1 class="product-title"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                        <span class="excerpt"><?php echo $_product->getData('subtitulo'); ?></span>
+                        <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                        <div class="desc hidden-mobile">
+                            O <strong>Nutren Junior</strong> é uma fórmula para crianças de 1 a 10 anos de idade, que necessitam de nutrição adequada para a recuperação e manutenção do estado nutricional.
+                        </div>
+                        <div class="labels hidden-mobile">
+                            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/sem-gluten.svg" alt="">
+                            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/sem-lactose.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="product-slider cols">
+                        <div class="slider owl-carousel">
+                            <div><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/img-produto.png" alt=""></div>
+                            <div><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/img-produto.png" alt=""></div>
+                            <div><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/img-produto.png" alt=""></div>
+                        </div>
+                    </div>
+
+                    <div class="product-infos cols">
+                        <div class="labels hidden-desktop">
+                            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/sem-gluten.svg" alt="">
+                            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/sem-lactose.svg" alt="">
+                        </div>
+                        <div class="content-prices">
+
+                            <?php
+                            /* Desconto em uma vez no cartão (5% de desconto) */
+                            $desconto = 5;
+
+                            if ($_product->isSaleable() && $this->hasOptions()){
+
+                                $preco = $this->getPriceHtml($_product);
+                                $preco = strip_tags($preco);
+                                $preco = str_replace("R$", "", $preco);
+                                $preco = str_replace(",", ".", $preco);
+                                $preco = (float) $preco;
+                            } else {
+
+                                $preco = $_product->getFinalPrice();
+                            }
+                            $precoComDesconto = $preco - ($preco * $desconto / 100);
+
+                            $msgDescCartao   = "<p class=original-price medium'>";
+                            $msgDescCartao  .=   "<span class=preco'>R$ ".number_format($preco, 2, ',', '')."</span>";
+                            $msgDescCartao  .=   "<span> (5% de desconto)</span>";
+                            $msgDescCartao  .= "</p>";
+                            $msgDescCartao  .= "<p class='msg-desconto-cartao-produto'>";
+                            $msgDescCartao  .=     "<span class='display-preco-com-desconto bold'>R$ ".number_format($precoComDesconto, 2, ',', '')."</span>";
+                            $msgDescCartao  .=     "<span class='medium'>em 1x no cartão de crédito </span>";
+                            $msgDescCartao  .= "</p>";
+
+                            echo $msgDescCartao;
+                            ?>
+
+                            <?php $precoTotal = $preco; ?>
+
+                            <div class="mob">
+                                <div class="bg-price ico-boleto medium">
+                                    <?php echo "R$ ".number_format($precoTotal, 2, ',', ''); ?> no boleto bancário ou transferência bancária
+                                </div>
+
+                                <?php if($precoTotal > 39.99): ?>
+
+                                    <div class="bg-price ico-cartao medium">
+                                        <?php
+
+                                        if($precoTotal >= 40 and $precoTotal <= 59.99){
+                                            $parcelas = 2;
+                                            $valorParcelado = $precoTotal / $parcelas;
+                                            echo 'R$ '.number_format($precoTotal, 2, ',', '').' em at&eacute; '. $parcelas .'x de R$'.number_format($valorParcelado, 2, ',', '').' sem juros no cart&atilde;o de cr&eacute;dito';
+                                        }
+                                        else if($precoTotal >= 60 and $precoTotal <= 79.99){
+                                            $parcelas = 3;
+                                            $valorParcelado = $precoTotal / $parcelas;
+                                            echo 'R$ '.number_format($precoTotal, 2, ',', '').' em at&eacute; '. $parcelas .'x de R$'.number_format($valorParcelado, 2, ',', '').' sem juros no cart&atilde;o de cr&eacute;dito';
+                                        }
+                                        else if($precoTotal >= 80 and $precoTotal <= 99.99){
+                                            $parcelas = 4;
+                                            $valorParcelado = $precoTotal / $parcelas;
+                                            echo 'R$ '.number_format($precoTotal, 2, ',', '').' em at&eacute; '. $parcelas .'x de R$'.number_format($valorParcelado, 2, ',', '').' sem juros no cart&atilde;o de cr&eacute;dito';
+                                        }
+                                        else if($precoTotal >= 100 and $precoTotal <= 119.99){
+                                            $parcelas = 5;
+                                            $valorParcelado = $precoTotal / $parcelas;
+                                            echo 'R$ '.number_format($precoTotal, 2, ',', '').' em at&eacute; '. $parcelas .'x de R$'.number_format($valorParcelado, 2, ',', '').' sem juros no cart&atilde;o de cr&eacute;dito';
+                                        }
+                                        else if($precoTotal >= 120){
+                                            $parcelas = 6;
+                                            $valorParcelado = $precoTotal / $parcelas;
+                                            echo 'R$ '.number_format($precoTotal, 2, ',', '').' em at&eacute; '. $parcelas .'x de R$'.number_format($valorParcelado, 2, ',', '').' sem juros no cart&atilde;o de cr&eacute;dito';
+                                        }
+                                        ?>
+                                    </div>
+
+                                <?php endif;?>
+                            </div>
+
+                        </div>
+                        <div class="btn-and-qty clearfix">
+                            <div class="qty-content clearfix">
+                                <span class="label-quantidade medium fs-14">Quantidade</span>
+                                <div class="list-qtd">
+                                    <span class="less">-</span>
+                                    <input style="width:27px !important;text-align:center;margin:0px;" class="op-i" type="text" name="qty" id="qty" maxlength="6" value="1">
+                                    <span class="more">+</span>
+                                </div>
+                            </div>
+
+                            <div class="btn-content">
+                                <input type="submit" value="COMPRAR" class="bt-buy-nova cor-sec d-b fs-20 radius bold validation-passed" onclick="productAddToCartForm.submit(this); return false;">
+                            </div>
+                        </div>
+
+                        <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-nav full">
+        <nav class="cols12">
+            <ul>
+                <li class="hidden-mobile"><a href="#indicacao" class="smooth-scroll"><span>Indicação</span></a></li>
+                <li class="hidden-mobile"><a href="#indicacao" class="smooth-scroll"><span>Modo de usar</span></a></li>
+                <li class="hidden-mobile"><a href="#ingredientes" class="smooth-scroll"><span>Ingredientes</span></a></li>
+                <li class="hidden-mobile"><a href="#ingredientes" class="smooth-scroll"><span>Conservação</span></a></li>
+                <li><a href="#tabela-nutri" class="modal-trigger"><span>Tabela Nutricional</span></a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="full top-inner-shadow full-bg featured-banner top-left hidden-mobile" style="background-image: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/indicacao-img.png');">
+        <div class="inner-gradient">
+            <div class="cols12 clearfix inner">
+                <div class="cols half-cols">
+                    <p><strong>Nutren Junior</strong> é um alimento para suplementação de nutrição enteral ou oral, normocalórico e normoproteico.</p>
+                    <p style="font-size: 40px; font-weight: 700;">1.0 Kcal/ml</p>
+                </div>
+                <div class="cols half-cols logo-nestle" style="text-align: right; margin: ">
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/logo-nestle.svg" alt="" style="margin: 0 60px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="indicacao" class="product-section full">
+        <div class="cols12 clearfix">
+            <div class="cols-wrapper clearfix">
+                <div class="half-cols cols">
+                    <p class="hidden-desktop">O <strong>Nutren Junior</strong> é uma fórmula para crianças de 1 a 10 anos de idade, que necessitam de nutrição adequada para a recuperação e manutenção do estado nutricional.
+                    </p>
+
+                    <p class="hidden-desktop"><strong>Nutren Junior</strong> é um alimento para suplementação de nutrição enteral ou oral, normocalórico e normoproteico. <br>
+                    <strong>1.0 Kcal/ml</strong></p>
+
+                    <h3>Para quem o <strong>Nutren Junior</strong> é indicado?</h3>
+                    <p>O <strong>Nutren Junior</strong> é indicado para crianças sem problemas de absorção, que necessitem de nutrição adequada para recuperação e manutenção do estado nutricional.</p>
+                </div>
+                <div class="half-cols cols">
+                    <h3>Como usar o <strong>Nutren Junior</strong>?</h3>
+                    <p>A dosagem de uso deve ser indicada conforme orientação do médico e/ou nutricionista. Para diluição do produto, meça a quantidade de água potável à temperatura ambiente e despeje em um recipiente limpo. Meça a quantidade necessária de pó utilizando a colher medida de dentro da lata. Adicione o pó à água e mexa imediatamente até homogeneizar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="full bottom-inner-shadow full-bg featured-banner bottom-right hidden-mobile" style="background-image: url('<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/indicacao-img-2.png');">
+        <div class="inner-gradient">
+            <div class="cols12 clearfix inner">
+                <p class="cols half-cols" style="font-size: 40px;">O <strong>Nutren Junior</strong> é indicado para crianças de 1 à 10 anos.</p>
+            </div>
+        </div>
+    </div>
+    <section id="como-funciona" class="full product-section centered">
+        <div class="cols12 clearfix">
+            <div class="cols-wrapper">
+                <div class="cols half-cols centered-col">
+                    <h3>Como o <strong>Nutren Junior</strong> funciona no organismo das crianças?</h3>
+                    <p>Os nutrientes da fórmula do <strong>Nutren Junior</strong> são absorvidos no intestino delgado pois atravessam as células por meio das vilosidades intestinais e com isso, ocorre a passagem das substâncias nutritivas para os vasos sanguíneos. Assim que os nutrientes chegam à circulação sanguínea, são distribuídos para todas as células e utilizados pelo organismo.</p>
+                    <p class="hidden-desktop">O <strong>Nutren Junior</strong> é indicado para crianças de 1 à 10 anos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="full ice-bg hidden-mobile banner-img">
+        <div class="cols12">
+            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/gluten-free.png" alt="" style="margin-top: 50px;">
+        </div>
+    </div>
+    <section id="ingredientes" class="full product-section">
+        <div class="cols12 clearfix">
+            <div class="cols-wrapper">
+                <div class="cols half-cols">
+                    <h3>Ingredientes</h3>
+                    <p>Sacarose, maltodextrina, xarope de milho, proteina de soro de leite, óleo de girassol, caseinato de potássio obtido do leite de vaca, óleo de canola de baixo teor erúcico, triglicerídeos de cadeia média, óleo de milho, fosfato de sódio, lecitina de soja, carbonato de cálcio, fosfato de potássio, cloreto de cálcio, vitaminas (vitamina A, beta-caroteno, vitamina D, vitamina E, vitamina K, vitamina C, vitamina B1, vitamina B2, niacina, vitamina B6, ácido fólico, ácido pantotênico, biotina e taurina), bitartarato de colina, cloreto de magnésio, minerais (ferro, cobre, zinco, cromo, molibdênio e iodo), L-carnitina, aromatizante, regulador de acidez ácido cítrico.</p>
+                </div>
+                <div class="cols half-cols">
+                    <h3>Dicas de Conservação</h3>
+                    <p>Fechar bem a lata após o uso e armazenar em local seco e fresco. Não utilizar o conteúdo da lata um mês depois de aberta. Após reconstituido, consumir no prazo de 04 a 06 horas (em temperatura ambiente) ou 24 horas sob refrigeração.</p>
+
+                    <h3>O <strong>Nutren Junior</strong> possui alguma contra indicação?</h3>
+                    <p>O produto é contra indicado para pacientes alérgicos à proteina do leite e/ou a soja.</p>
+
+                    <div class="alert-box">
+                        <h4>Atenção</h4>
+                        <p>Advertência do Ministério da Saúde: este produto não deve ser usado para alimentar crianças menores de um ano de idade. O aleitamento materno evita infecções e alergias e é recomendado até os dois anos de idade ou mais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="tabela-nutri" class="modal-wrapper modal-tabela">
+    <div class="modal-mask"></div>
+    <a href="#close" title="Close" class="close">
+        <img src="https://www.nutrii.com.br/skin/frontend/default/adaptive-shop/<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/default/adaptive-shop/images/icon-called-close.png">
+    </a>
+    <div class="modal-content">
+        <div>
+            <h3 class="yellow">Tabela nutricional</h3>
+            <div class="tabela">
+                <div id="colunas4" class="product-info"><table>   <tbody><tr>     <th class="tg-xbtp-title"><strong>Quantidade da porção: 100ML</strong></th>   </tr> </tbody></table><table>  <tbody><tr>     <th class="tg-xbtp" colspan="3"><strong>CALORIAS</strong></th>	 </tr><tr>     <td>VALOR ENERGETICO</td>     <td><span>109KCAL=458KJ</span></td>		<td><span>**</span></td></tr></tbody></table><table>  <tbody><tr>     <th class="tg-xbtp" colspan="3"><strong>CARBOIDRATOS</strong></th>	 </tr><tr>     <td>CARBOIDRATO</td>     <td><span>14G</span></td>		<td><span>**</span></td></tr><tr>     <td>ACUCARES</td>     <td><span>0,7G</span></td>		<td><span>**</span></td></tr><tr>     <td>LACTOSE</td>     <td><span>0G</span></td>		<td><span>**</span></td></tr><tr>     <td>SACAROSE</td>     <td><span>0G</span></td>		<td><span>**</span></td></tr></tbody></table><table>  <tbody><tr>     <th class="tg-xbtp" colspan="3"><strong>PROTEINAS</strong></th>	 </tr><tr>     <td>PROTEINA</td>     <td><span>6,5G</span></td>		<td><span>**</span></td></tr></tbody></table><table>  <tbody><tr>     <th class="tg-xbtp" colspan="3"><strong>GORDURAS</strong></th>	 </tr><tr>     <td>GORDURAS TOTAIS</td>     <td><span>2,8G</span></td>		<td><span>**</span></td></tr><tr>     <td>GORDURAS SATURADAS</td>     <td><span>1,3G</span></td>		<td><span>**</span></td></tr><tr>     <td>GORDURAS TRANS</td>     <td><span>0G</span></td>		<td><span>**</span></td></tr></tbody></table><table>  <tbody><tr>     <th class="tg-xbtp" colspan="3"><strong>FIBRAS</strong></th>	 </tr><tr>     <td>FIBRA ALIMENTAR</td>     <td><span>0G</span></td>		<td><span>**</span></td></tr></tbody></table><table>  <tbody><tr>     <th class="tg-xbtp" colspan="3"><strong>VITAMINAS E MINERAIS</strong></th>	 </tr><tr>     <td>SODIO</td>     <td><span>130MG</span></td>		<td><span>5 %</span></td></tr><tr>     <td>CALCIO</td>     <td><span>37MG</span></td>		<td><span>4 %</span></td></tr><tr>     <td>FERRO</td>     <td><span>1,1MG</span></td>		<td><span>8 %</span></td></tr><tr>     <td>POTASSIO</td>     <td><span>75MG</span></td>		<td><span>**</span></td></tr><tr>     <td>CLORETO</td>     <td><span>156MG</span></td>		<td><span>**</span></td></tr><tr>     <td>FOSFORO</td>     <td><span>60MG</span></td>		<td><span>9 %</span></td></tr><tr>     <td>MAGNESIO</td>     <td><span>18MG</span></td>		<td><span>7 %</span></td></tr><tr>     <td>ZINCO</td>     <td><span>1,0MG</span></td>		<td><span>14 %</span></td></tr><tr>     <td>MANGANES</td>     <td><span>0,11MG</span></td>		<td><span>5 %</span></td></tr><tr>     <td>COBRE</td>     <td><span>110UG</span></td>		<td><span>12 %</span></td></tr><tr>     <td>MOLIBDENIO</td>     <td><span>22UG</span></td>		<td><span>49 %</span></td></tr><tr>     <td>IODO</td>     <td><span>15UG</span></td>		<td><span>12 %</span></td></tr><tr>     <td>CROMO</td>     <td><span>4,0UG</span></td>		<td><span>11 %</span></td></tr><tr>     <td>SELENIO</td>     <td><span>13UG</span></td>		<td><span>37 %</span></td></tr><tr>     <td>VITAMINA A</td>     <td><span>115 UG RE</span></td>		<td><span>19 %</span></td></tr><tr>     <td>VITAMINA D</td>     <td><span>0,46UG</span></td>		<td><span>9 %</span></td></tr><tr>     <td>VITAMINA E</td>     <td><span>2,7 MG TE</span></td>		<td><span>27 %</span></td></tr><tr>     <td>VITAMINA C</td>     <td><span>50MG</span></td>		<td><span>111 %</span></td></tr><tr>     <td>NIACINA</td>     <td><span>1,4MG</span></td>		<td><span>9 %</span></td></tr><tr>     <td>ACIDO PANTOTENICO</td>     <td><span>1,2MG</span></td>		<td><span>24 %</span></td></tr><tr>     <td>VITAMINA B6</td>     <td><span>0,18MG</span></td>		<td><span>13 %</span></td></tr><tr>     <td>RIBOFLAVINA (VIT. B2)</td>     <td><span>0,17MG</span></td>		<td><span>13 %</span></td></tr><tr>     <td>TIAMINA (VIT. B1)</td>     <td><span>0,11MG</span></td>		<td><span>9 %</span></td></tr><tr>     <td>BIOTINA</td>     <td><span>6,4UG</span></td>		<td><span>21 %</span></td></tr><tr>     <td>ACIDO FOLICO</td>     <td><span>25UG</span></td>		<td><span>10 %</span></td></tr><tr>     <td>VITAMINA K</td>     <td><span>9,5UG</span></td>		<td><span>15 %</span></td></tr><tr>     <td>VITAMINA B12</td>     <td><span>0,60UG</span></td>		<td><span>25 %</span></td></tr><tr>     <td>COLINA</td>     <td><span>24MG</span></td>		<td><span>4 %</span></td></tr></tbody></table></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    productAddToCartForm.submit = function(button, url) {
+        if (this.validator.validate()) {
+            var form = this.form;
+            var oldUrl = form.action;
+
+            if (url) {
+                form.action = url;
+            }
+            var e = null;
+            try {
+                this.form.submit();
+            } catch (e) {
+            }
+            this.form.action = oldUrl;
+            if (e) {
+                throw e;
+            }
+
+            if (button && button != 'undefined') {
+                button.disabled = true;
+            }
+        }
+    }.bind(productAddToCartForm);
+
+    productAddToCartForm.submitLight = function(button, url){
+        if(this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            // Remove custom datetime validators
+            for (var methodName in Validation.methods) {
+                if (methodName.match(/^validate-datetime-.*/i)) {
+                    delete Validation.methods[methodName];
+                }
+            }
+
+            if (this.validator.validate()) {
+                if (url) {
+                    this.form.action = url;
+                }
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+    //]]>
+</script>
+
+<script type="text/javascript">
+    $j = jQuery.noConflict();
+
+    $j('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        responsive:{
+            0:{
+                items:1
+            }
+        }
+    });
+
+    $j('.modal-trigger').each(function() {
+        $j(this).click(function(e) {
+            e.preventDefault();
+
+            var target = this.hash;
+            var $target = $j(target);
+
+            $j($target).fadeIn('fast');
+            $j('body').addClass('modal-opened');
+        });
+
+        $j('.modal-wrapper .close, .modal-wrapper .modal-mask').click(function (e) {
+            e.preventDefault();
+            $j(this).closest('.modal-wrapper').fadeOut('fast');
+            $j('body').removeClass('modal-opened');
+        });
+    });
+
+    $j('.smooth-scroll').each(function() {
+        $j(this).click(function(e) {
+            e.preventDefault();
+
+            var target = this.hash;
+            var $target = $j(target);
+
+            $j("html, body").animate({ scrollTop: $target.offset().top }, 700);
+        });
+    });
+
+</script>
