@@ -8470,15 +8470,18 @@ span.error-captcha {
 }
 
 
+
+
 /********************************
 –––––––––––––––––––––––––––––––––
 –––––––– ESTILOS PRODUTO ––––––––
 –––––––––––––––––––––––––––––––––
 *********************************/
 
-body {
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
+.product-custom-layout p,
+.product-custom-layout span,
+.product-custom-layout .product-info {
+    color: inherit;
 }
 
 .product-wrapper,
@@ -8494,13 +8497,13 @@ body {
     max-width: 100%;
 }
 
-.cols {
+.product-wrapper .cols {
     padding-left: 15px;
     padding-right: 15px;
     float: left;
 }
 
-.cols-wrapper {
+.product-wrapper .cols-wrapper {
     margin-left: -15px;
     margin-right: -15px;
 }
@@ -8702,11 +8705,15 @@ span.less {
     display: block;
     width: 32px;
     height: 54px;
+    border: 0px;
 }
 
 .product-slider .owl-dots .owl-dot {
     display: inline-block;
     margin: 23px 0;
+    border: 0px;
+    padding: 0px;
+    background: transparent;
 }
 
 .product-slider .owl-dots .owl-dot:focus {
@@ -8738,6 +8745,7 @@ span.less {
 }
 
 .product-nav li a {
+	text-decoration: none;
     display: block;
     padding: 3px 15px;
     position: relative;
